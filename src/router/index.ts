@@ -9,7 +9,7 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "about" */ "../views/Home.vue"),
     children: [
       {
-        path: "/index",
+        path: "/",
         name: "projects",
         meta: {
           isShow: true,
