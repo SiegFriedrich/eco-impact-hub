@@ -91,6 +91,7 @@ const mainMenu = [
             width: 85px;
             margin-left: 32px;
             font-size: 20px;
+            cursor: pointer;
         }
 
         .icon-group {
@@ -128,6 +129,7 @@ const mainMenu = [
         color: #A19F9F;
         height: 51px;
         border-bottom: 1px solid #A19F9F;
+        cursor: pointer;
     }
 
     .reset-button {

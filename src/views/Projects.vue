@@ -1,7 +1,12 @@
 <template>
     <div class="images-container">
         <div class="image-item" v-for="item in images" :key="item.path">
-            <div class="cover"></div>
+            <div class="cover">
+                <div class="description">
+                    <span class="category">{{ item.category }}</span> <br />
+                    <span class="title">{{ item.title }}</span>
+                </div>
+            </div>
             <div class="base"><img :src="getImagePath(item.path)"></div>
 
         </div>
@@ -25,15 +30,16 @@ const getImagePath = (path: string) => {
 // }
 
 const images = [
-    { path: 'afforestation', category: 'afforestation'.toLocaleUpperCase, title: 'One-to-Tree' },
-    { path: 'energyefficiency', category: 'energy efficiency'.toLocaleUpperCase, title: 'Improved Cookstoves' },
-    { path: 'agriculture', category: 'agriculture'.toLocaleUpperCase, title: 'Carbon-Efficient Farming' },
-    { path: 'redd', category: 'redd'.toLocaleUpperCase, title: 'Mindanao Forest Conservation' },
+    { path: 'afforestation', category: 'AFFORESTATION', title: 'One-to-Tree' },
+    { path: 'energyefficiency', category: 'ENERGY EFFICIENCY', title: 'Improved Cookstoves' },
+    { path: 'agriculture', category: 'AGRICULTURE', title: 'Carbon-Efficient Farming' },
+    { path: 'redd', category: 'REDD', title: 'Mindanao Forest Conservation' },
 ]
 </script>
 
 <style scoped>
 .images-container {
+    cursor: pointer;
     position: relative;
     display: flex;
     justify-content: space-around;
@@ -47,7 +53,6 @@ const images = [
 
         .base {
             z-index: 1;
-            cursor: pointer;
         }
 
         .cover {
@@ -61,6 +66,23 @@ const images = [
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             border-bottom-left-radius: 20px;
             border-bottom-right-radius: 20px;
+
+            .description {
+                margin-top: 70px;
+                margin-left: 21px;
+
+                .category {
+                    font-size: 10px;
+                    color: white;
+                }
+
+                .title {
+                    color: white;
+                    font-size: 20px;
+                    font-weight: 700;
+                }
+            }
+
         }
     }
 }
