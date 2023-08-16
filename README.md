@@ -1,6 +1,7 @@
 # Eco Impact Hub
 ### An SDG product managing system.
 Inspire, designer Marlex Orlandiz Turson.
+
 Tech consultant, project architector Ling Yijun(Sieg).
 
 # Vue 3 + TypeScript + Vite
