@@ -1,60 +1,37 @@
 <template>
-    <div class="common-layout">
+    <el-header class="seconde-header">
+        <div><el-text style="font-size: 40px;">Projects</el-text></div>
+        <div>
+            <ClearableInput />
+        </div>
+        <div>
+            <el-button color="#004D84" round>+ Request for proposal</el-button>
+        </div>
+    </el-header>
+
+    <el-container>
+        <el-aside class="side" width="200px">
+            <ul>
+                <li class="menu-item" v-for="item in mainMenu" :key="item.name">{{ item.name }}
+                    <el-icon>
+                        <ArrowDown />
+                    </el-icon>
+                </li>
+            </ul>
+            <div>
+                <el-button class="reset-button" type="info" round>Reset filters</el-button>
+            </div>
+        </el-aside>
         <el-container>
-            <el-header class="header">
-                <div>
-                    <EcoLogo />
-                </div>
-                <div class="header-navi">
-                    <div class="title">Projects</div>
-                    <div class="title">About Us</div>
-                    <div class="icon-group">
-                        <div>
-                            <img src="../assets/shoppingcart.png" width="33" alt="shopping cart" />
-                        </div>
-                        <div>
-                            <img src="../assets/profile.png" width="36" alt="profile" />
-                        </div>
-                    </div>
-                </div>
-
-
-            </el-header>
-            <el-header class="seconde-header">
-                <div><el-text style="font-size: 40px;">Projects</el-text></div>
-                <div>
-                    <ClearableInput />
-                </div>
-                <div>
-                    <el-button color="#004D84" round>+ Request for proposal</el-button>
-                </div>
-            </el-header>
-            <el-container>
-                <el-aside class="side" width="200px">
-                    <ul>
-                        <li class="menu-item" v-for="item in mainMenu" :key="item.name">{{ item.name }}
-                            <el-icon>
-                                <ArrowDown />
-                            </el-icon>
-                        </li>
-                    </ul>
-                    <div>
-                        <el-button class="reset-button" type="info" round>Reset filters</el-button>
-                    </div>
-                </el-aside>
-                <el-container>
-                    <el-main class="main">
-                        <router-view />
-                    </el-main>
-                </el-container>
-            </el-container>
+            <el-main class="main">
+                <router-view />
+            </el-main>
         </el-container>
-    </div>
+    </el-container>
 </template>
   
 
 <script setup lang="ts">
-import EcoLogo from '../elements/EcoLogo.vue'
 import ClearableInput from '../components/ClearableInput.vue'
 
 const mainMenu = [
@@ -68,43 +45,6 @@ const mainMenu = [
 </script>
 
 <style scoped lang="scss">
-.common-layout {
-    margin: 0 45px 0 45px;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 18px;
-
-    .header-navi {
-        display: flex;
-
-        /**
-            How to deal with the text vertical align middle 
-            https://www.cnblogs.com/xiaocaiyuxiaoniao/p/10407830.html
-        */
-        .title {
-            height: 59px;
-            line-height: 59px;
-            vertical-align: middle;
-            width: 85px;
-            margin-left: 32px;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        .icon-group {
-            width: 85px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-left: 50px;
-        }
-    }
-
-}
-
 .seconde-header {
     margin-top: 42px;
     display: flex;
@@ -140,10 +80,7 @@ const mainMenu = [
     }
 }
 
-.main {
-    width: 75%;
-    height: 80vh;
-}
+
 
 .footer {
     background-color: darkgoldenrod;
