@@ -1,8 +1,8 @@
 # Eco Impact Hub
 ### An SDG product managing & selling system.
-Inspire, designer **Marlex Orlandiz Turson**.
+Inspiration, business consultant, designer, founder **Marlex Orlandiz Turson**.
 
-Tech consultant, project architector, developer **Ling Yijun(Sieg)**.
+Tech consultant, project architector & developer, founder **Ling Yijun(Sieg)**.
 
 # Vue 3 + TypeScript + Vite
 
