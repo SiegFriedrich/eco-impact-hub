@@ -8,40 +8,27 @@ const routes: Array<RouteRecordRaw> = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Base.vue"),
     children: [
-      {
-        path: "/",
-        name: "base",
-        meta: {
-          isShow: true,
-          title: "index",
+        {
+          path: "/",
+          name: "projects",
+          meta: {
+            isShow: true,
+            title: "index",
+          },
+          component: () =>
+            import(/* webpackChunkName: "about" */ "../views/Projects.vue"),
         },
-        component: () =>
-          import(/* webpackChunkName: "about" */ "../views/Home.vue"),
-        children: [
-          {
-            path: "/",
-            name: "projects",
-            meta: {
-              isShow: true,
-              title: "index",
-            },
-            component: () =>
-              import(/* webpackChunkName: "about" */ "../views/Projects.vue"),
+        {
+          path: "/projects/detail/:id",
+          name: "detail",
+          meta: {
+            isShow: true,
+            title: "index",
           },
-          {
-            path: "/detail",
-            name: "detail",
-            meta: {
-              isShow: true,
-              title: "skills",
-            },
-            component: () =>
-              import(/* webpackChunkName: "about" */ "../views/Detail.vue"),
-          },
-        ]
-      },
-      
-    ],
+          component: () =>
+            import(/* webpackChunkName: "about" */ "../views/Detail.vue"),
+        },
+    ]
   },
   {
     path: "/:pathMatch(.*)*",

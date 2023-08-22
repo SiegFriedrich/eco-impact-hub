@@ -1,10 +1,10 @@
 <template>
-    <div class="common-layout">
-        <el-container>
-            <el-header class="header">
-                <div>
-                    <EcoLogo />
-                </div>
+    <div>
+        <el-container class="">
+            <el-header class="header common-margin">
+
+                <EcoLogo />
+
                 <div class="header-navi">
                     <div class="title">Projects</div>
                     <div class="title">About Us</div>
@@ -18,9 +18,9 @@
                     </div>
                 </div>
             </el-header>
-            <el-main class="main">
-                <router-view />
-            </el-main>
+
+            <router-view />
+
         </el-container>
     </div>
 </template>
@@ -33,14 +33,12 @@ import EcoLogo from '../elements/EcoLogo.vue'
 </script>
 
 <style scoped lang="scss">
-.common-layout {
-    margin: 0 45px 0 45px;
-}
-
 .header {
     display: flex;
     justify-content: space-between;
-    margin-top: 18px;
+    align-items: center;
+    margin-top: 19px;
+    margin-bottom: 19px;
 
     .header-navi {
         display: flex;
