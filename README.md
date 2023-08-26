@@ -1,6 +1,6 @@
 # Eco Impact Hub
 ### An SDG product managing & selling system.
-Inspiration, business consultant, designer, founder **Marlex Orlandiz Turson**.
+Inspiration, business consultant, designer, founder **Marlex Olandiz Tuson**.
 
 Tech consultant, project architector & developer, founder **Ling Yijun(Sieg)**.
 
