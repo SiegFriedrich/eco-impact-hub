@@ -21,7 +21,7 @@
                     <div>
                         <div class="detail-sub-titile">Sustainable Development Contributions</div>
                         <div class="detail-content">
-                            <img src="../assets/sdg-image/E_SDG_Icons-01.jpg" alt="No poverty" />
+                            <SDGIcon v-for="el in icons" :key="el" :iconSrc="el" />
                         </div>
                     </div>
 
@@ -44,6 +44,17 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
+import SDGIcon from '../components/SDGIcon.vue';
+//Problems Solutions
+/**
+ * How to pass img src to children when i do this below it doesnt work.
+ */
+const icons = ref([
+    '../assets/sdg-image/E_SDG_Icons-01.jpg',
+    '../assets/sdg-image/E_SDG_Icons-13.jpg',
+    '../assets/sdg-image/E_SDG_Icons-15.jpg',
+])
 
 </script>
 
@@ -87,6 +98,8 @@
         }
 
         .detail-content {
+            display: flex;
+            justify-content: flex-start;
             color: #525252;
             font-size: 14px;
             font-weight: 400px;
