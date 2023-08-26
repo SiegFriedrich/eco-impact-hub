@@ -1,13 +1,29 @@
 <template>
     <div class="common-layout">
         <el-container>
+
             <el-header class="header">
-                <div class="header-cover"></div>
+                <div class="header-cover">
+                    <el-button class="back-button" type="info" round>
+                        <UnionArrowLeft class="left-arrow" />
+                        <span class="button-text">Back</span>
+                    </el-button>
+                    <div class="title-group">
+                        <span class="header-project-name">AFFORESTATION</span> <br />
+                        <span class="header-project-category">One-to-Tree</span>
+                    </div>
+
+                </div>
+
             </el-header>
+
             <el-main class="detail-page">
                 <div class="project-detail">
                     <div>
-                        <div class="detail-sub-titile">Description </div>
+                        <div class="detail-sub-titile">
+                            <span>Description</span>
+                            <UnionArrowDown />
+                        </div>
                         <div class="detail-content">
                             The "One-to-Tree" initiative is a visionary tree planting project focused on addressing climate
                             change and fostering ecological restoration. This innovative project aims to convert
@@ -19,31 +35,98 @@
                         </div>
                     </div>
                     <div>
-                        <div class="detail-sub-titile">Sustainable Development Contributions</div>
+                        <div class="detail-sub-titile">
+                            <span>Sustainable Development Contributions</span>
+                            <UnionArrowDown />
+                        </div>
                         <div class="detail-content">
-                            <img src="../assets/sdg-image/E_SDG_Icons-01.jpg" alt="No poverty" />
+                            <SDGIcon v-for="el in icons" :key="el" :iconSrc="el" />
                         </div>
                     </div>
 
                     <div>
-                        <div class="detail-sub-titile">Project Details</div>
-                        <div class="detail-content"> </div>
+                        <div class="detail-sub-titile">
+                            <span>Project Details</span>
+                            <UnionArrowDown />
+                        </div>
+                        <div class="detail-content-between">
+                            <div class="text-content">
+                                <div class="detail-sub-content">
+                                    Project type:<br />
+                                    Mechanism:<br />
+                                    Location:<br />
+                                    Developer:<br />
+                                    Website:<br />
+                                </div>
+                                <div class="detail-sub-content">
+                                    Afforestation<br />
+                                    Removal<br />
+                                    Cebu, Philippines<br />
+                                    Tree Planters, Inc.<br />
+                                    www.treeplanters.com<br />
+                                </div>
+                            </div>
+                            <div>
+                                <img src="../assets/cebu-location-map.png">
+                            </div>
+                        </div>
                     </div>
 
                     <div>
-                        <div class="detail-sub-titile">Certification</div>
-                        <div class="detail-content"> </div>
+                        <div class="detail-sub-titile">
+                            <span>Certification</span>
+                            <UnionArrowDown />
+                        </div>
+                        <div class="detail-content-between">
+                            <div class="text-content">
+                                <div class="detail-sub-content">
+                                    Registry:<br />
+                                    Status:<br />
+                                    URL:<br />
+                                </div>
+                                <div class="detail-sub-content">
+                                    Verra Registry<br />
+                                    Registered<br />
+                                    Verra Registry<br />
+                                </div>
+                            </div>
+                            <div class="text-content">
+                                <div class="detail-sub-content">
+                                    Validator:<br />
+                                    Start of crediting period:<br />
+                                    End of crediting period:<br />
+                                </div>
+                                <div class="detail-sub-content">
+                                    DNV<br />
+                                    January 11, 2018<br />
+                                    January 10, 2048<br />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="project-bill">
-                    <div class="bill-item"></div>
-                </div>
+
+                <PurchaseCard />
             </el-main>
         </el-container>
     </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
+import SDGIcon from '../components/SDGIcon.vue';
+import UnionArrowDown from '../elements/UnionArrowDown.vue';
+import UnionArrowLeft from '../elements/UnionArrowLeft.vue';
+import PurchaseCard from '../components/PurchaseCard.vue';
+//Problems Solutions
+/**
+ * How to pass img src to children when i do this below it doesnt work.
+ */
+const icons = ref([
+    '../assets/sdg-image/E_SDG_Icons-01.jpg',
+    '../assets/sdg-image/E_SDG_Icons-13.jpg',
+    '../assets/sdg-image/E_SDG_Icons-15.jpg',
+])
 
 </script>
 
@@ -56,7 +139,7 @@
 }
 
 .header {
-    height: 18vh;
+    height: 22vh;
     margin-left: 0;
     background-image: url('../assets/project1banner.png');
     background-repeat: no-repeat;
@@ -64,8 +147,40 @@
 }
 
 .header-cover {
-    height: 18vh;
+    z-index: 99;
+    height: calc(18vh - 1px);
     background: linear-gradient(to right, #7A7A7A, #7A7A7A00);
+    padding: 20px 50px 20px 50px;
+
+    .title-group {
+        margin-top: 59px;
+    }
+
+    .back-button {
+        display: flex;
+        justify-content: space-between;
+
+        .left-arrow {
+            // margin-top: 10px;
+            margin-right: 8px;
+        }
+
+        .button-text {
+            margin-top: 1px;
+        }
+    }
+
+    .header-project-name {
+        font-size: 15px;
+        color: white;
+    }
+
+    .header-project-category {
+        color: white;
+        font-size: 50px;
+        font-weight: 700;
+    }
+
 }
 
 .detail-page {
@@ -76,42 +191,54 @@
         padding: 0 60px 0 50px;
 
         .detail-sub-titile {
-            color: #525252;
-            font-size: 18px;
-            font-weight: 700;
-            line-height: 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
             padding-top: 39px;
             padding-bottom: 12px;
             border-bottom: 1px #f4f4f4 solid;
             margin-bottom: 15px;
+
+            span {
+                color: #525252;
+                font-size: 18px;
+                font-weight: 700;
+                line-height: 22px;
+            }
         }
 
         .detail-content {
+            display: flex;
+            justify-content: start;
             color: #525252;
             font-size: 14px;
             font-weight: 400px;
             line-height: 20px;
             padding-right: 40px;
+
+
+
+        }
+
+        .detail-content-between {
+            display: flex;
+            justify-content: space-between;
+
+            .text-content {
+                display: flex;
+                justify-content: flex-start;
+            }
+
+
+            .detail-sub-content {
+                margin-right: 20px;
+            }
         }
 
     }
 
-    .project-bill {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        padding: 20px 52px 52px 52px;
 
-        .bill-item {
-            width: 400px;
-            height: 60vh;
-            margin-top: 19px;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
-
-        }
-    }
 
 
 }
