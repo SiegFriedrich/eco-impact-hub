@@ -19,7 +19,7 @@
             <div class="bill-item">
                 <span class="bill-item-name">Volume</span>
                 <div class="mt-4">
-                    <el-input v-model="input3" placeholder="Please input" class="input-with-select">
+                    <el-input v-model="input3" :value="value" class="input-with-select">
                         <template #prepend>
                             <span>-</span>
                         </template>
@@ -70,9 +70,7 @@
 import { ref } from 'vue'
 import PurchaseCardButton from './PurchaseCardButton.vue';
 
-import { Search } from '@element-plus/icons-vue'
 const input3 = ref('')
-const select = ref('')
 
 const value = ref('')
 const options = [
