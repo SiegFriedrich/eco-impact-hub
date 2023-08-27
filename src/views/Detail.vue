@@ -1,109 +1,23 @@
 <template>
     <div class="common-layout">
         <el-container>
-
-            <el-header class="header">
+            <el-header class="header" :class="{ 'background-image': imagePath }">
                 <div class="header-cover">
-                    <el-button class="back-button" type="info" round>
+                    <el-button class="back-button" type="info" round @click="goToProjectPage()">
                         <UnionArrowLeft class="left-arrow" />
                         <span class="button-text">Back</span>
                     </el-button>
                     <div class="title-group">
-                        <span class="header-project-name">AFFORESTATION</span> <br />
-                        <span class="header-project-category">One-to-Tree</span>
+                        <!-- Problems Solutions 初期画面渲染时，没有数据会报错！！！， 所以要使用‘？’符号 -->
+                        <span class="header-project-name">{{ projectInfoResult[0]?.projectCategory }}</span> <br />
+                        <span class="header-project-category">{{ projectInfoResult[0]?.projectName }}</span>
                     </div>
-
                 </div>
-
             </el-header>
 
             <el-main class="detail-page">
                 <div class="project-detail">
-                    <div>
-                        <div class="detail-sub-titile">
-                            <span>Description</span>
-                            <UnionArrowDown />
-                        </div>
-                        <div class="detail-content">
-                            The "One-to-Tree" initiative is a visionary tree planting project focused on addressing climate
-                            change and fostering ecological restoration. This innovative project aims to convert
-                            underutilized spaces into thriving forests, strategically planting trees that serve as powerful
-                            carbon sinks. Through community involvement, educational campaigns, and rigorous monitoring,
-                            "One-to-Tree" seeks to not only mitigate carbon emissions but also cultivate a renewed sense of
-                            environmental responsibility. Each tree planted symbolizes a step towards a more sustainable
-                            future, uniting individuals and communities in the global fight against climate change.
-                        </div>
-                    </div>
-                    <div>
-                        <div class="detail-sub-titile">
-                            <span>Sustainable Development Contributions</span>
-                            <UnionArrowDown />
-                        </div>
-                        <div class="detail-content">
-                            <SDGIcon v-for="el in icons" :key="el" :iconSrc="el" />
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="detail-sub-titile">
-                            <span>Project Details</span>
-                            <UnionArrowDown />
-                        </div>
-                        <div class="detail-content-between">
-                            <div class="text-content">
-                                <div class="detail-sub-content">
-                                    Project type:<br />
-                                    Mechanism:<br />
-                                    Location:<br />
-                                    Developer:<br />
-                                    Website:<br />
-                                </div>
-                                <div class="detail-sub-content">
-                                    Afforestation<br />
-                                    Removal<br />
-                                    Cebu, Philippines<br />
-                                    Tree Planters, Inc.<br />
-                                    www.treeplanters.com<br />
-                                </div>
-                            </div>
-                            <div>
-                                <img src="../assets/cebu-location-map.png">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div class="detail-sub-titile">
-                            <span>Certification</span>
-                            <UnionArrowDown />
-                        </div>
-                        <div class="detail-content-between">
-                            <div class="text-content">
-                                <div class="detail-sub-content">
-                                    Registry:<br />
-                                    Status:<br />
-                                    URL:<br />
-                                </div>
-                                <div class="detail-sub-content">
-                                    Verra Registry<br />
-                                    Registered<br />
-                                    Verra Registry<br />
-                                </div>
-                            </div>
-                            <div class="text-content">
-                                <div class="detail-sub-content">
-                                    Validator:<br />
-                                    Start of crediting period:<br />
-                                    End of crediting period:<br />
-                                </div>
-                                <div class="detail-sub-content">
-                                    DNV<br />
-                                    January 11, 2018<br />
-                                    January 10, 2048<br />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <CollapsableDetail />
                 </div>
 
                 <PurchaseCard />
@@ -113,20 +27,89 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import SDGIcon from '../components/SDGIcon.vue';
-import UnionArrowDown from '../elements/UnionArrowDown.vue';
+//Problems Solution
+/**
+ * 1.How to adjust the @ path in vue?
+ * 2.Cannot find module '../models/project.model' or its corresponding type declaration
+ *   -> Restart the VSCode!!!!! XD
+ * 3.How to get route parameters?
+ */
+import router from '../router';
+import { ProjectInfo } from '../models/project.model';
 import UnionArrowLeft from '../elements/UnionArrowLeft.vue';
 import PurchaseCard from '../components/PurchaseCard.vue';
+import CollapsableDetail from '../components/CollapsableDetail.vue';
+import { useRoute } from 'vue-router'
+import { ref } from 'vue';
+const route = useRoute();
+// import { PropType, toRefs, onMounted } from 'vue';
 //Problems Solutions
 /**
  * How to pass img src to children when i do this below it doesnt work.
  */
-const icons = ref([
-    '../assets/sdg-image/E_SDG_Icons-01.jpg',
-    '../assets/sdg-image/E_SDG_Icons-13.jpg',
-    '../assets/sdg-image/E_SDG_Icons-15.jpg',
-])
+
+
+// const props = defineProps({
+//     projectInfo: {
+//         required: true,
+//         type: Object as PropType<ProjectInfo>,
+//     }
+// });
+
+// const { projectInfo } = toRefs(props);
+const projectInfos: ProjectInfo[] = [
+
+    {
+        projectNo: '1001',
+        projectCategory: 'AFFORESTATION',
+        projectName: 'One-to-Tree',
+        projectImage: 'afforestation',
+    }, {
+        projectNo: '1002',
+        projectCategory: 'ENERGY EFFICIENCY',
+        projectName: 'Improved Cookstoves',
+        projectImage: 'ENERGY EFFICIENCY',
+    }, {
+        projectNo: '1003',
+        projectCategory: 'AGRICULTURE',
+        projectName: 'Carbon-Efficient Farming',
+        projectImage: 'agriculture',
+    }, {
+        projectNo: '1004',
+        projectCategory: 'REDD',
+        projectName: 'Mindanao Forest Conservation',
+        projectImage: 'redd',
+    },
+]
+
+// let projectInfoResult = reactive({
+//     projectNo: '',
+//     projectCategory: '',
+//     projectName: '',
+//     projectImage: '',
+// })
+let projectInfoResult: ProjectInfo[] = [];
+let imagePath = ref(`url('../assets/project1banner.png')`);
+const getProjectImage = (path: string) => {
+    const res = path ? new URL('../assets/' + path + '.png', import.meta.url).href : '';
+    return res;
+}
+const goToProjectPage = () => {
+    router.push('/')
+}
+
+const projectNo = route.params.id
+console.log(projectNo);
+
+projectInfoResult = projectInfos.filter((el) => {
+    return el.projectNo === projectNo;
+})
+
+console.log(projectInfoResult);
+imagePath.value = getProjectImage(projectInfoResult[0]?.projectImage);
+console.log(imagePath);
+
+
 
 </script>
 
@@ -138,17 +121,30 @@ const icons = ref([
     }
 }
 
+.detail-page {
+    margin-bottom: 10%;
+
+    .project-detail {
+        width: 100%;
+    }
+}
+
+//Problems Solution
+/**
+vmとvhの違いをわかってください！
+*/
 .header {
-    height: 22vh;
+    width: 100vw;
+    height: min(206px);
     margin-left: 0;
-    background-image: url('../assets/project1banner.png');
+    // background-image: url('../assets/project1banner.png');
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 .header-cover {
     z-index: 99;
-    height: calc(18vh - 1px);
+    height: 166px;
     background: linear-gradient(to right, #7A7A7A, #7A7A7A00);
     padding: 20px 50px 20px 50px;
 
@@ -189,57 +185,7 @@ const icons = ref([
 
     .project-detail {
         padding: 0 60px 0 50px;
-
-        .detail-sub-titile {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            padding-top: 39px;
-            padding-bottom: 12px;
-            border-bottom: 1px #f4f4f4 solid;
-            margin-bottom: 15px;
-
-            span {
-                color: #525252;
-                font-size: 18px;
-                font-weight: 700;
-                line-height: 22px;
-            }
-        }
-
-        .detail-content {
-            display: flex;
-            justify-content: start;
-            color: #525252;
-            font-size: 14px;
-            font-weight: 400px;
-            line-height: 20px;
-            padding-right: 40px;
-
-
-
-        }
-
-        .detail-content-between {
-            display: flex;
-            justify-content: space-between;
-
-            .text-content {
-                display: flex;
-                justify-content: flex-start;
-            }
-
-
-            .detail-sub-content {
-                margin-right: 20px;
-            }
-        }
-
+        margin-right: 100px;
     }
-
-
-
-
 }
 </style>

@@ -1,10 +1,9 @@
 <template>
-    <div class="project-bill">
+    <div class="project-bill" @scroll="scrolling()">
         <div class="bill-item-container">
             <div class="bill-item">
                 <span class="bill-item-name">Vintage</span>
-                <el-select v-model="value" class="m-2 purchase-card-select-input" :placeholder="options[1].label"
-                    size="small">
+                <el-select v-model="vintageValue" class="m-2 purchase-card-select-input" :placeholder="options[1].label">
                     <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
                 </el-select>
             </div>
@@ -18,12 +17,12 @@
             </div>
             <div class="bill-item">
                 <span class="bill-item-name">Volume</span>
-                <div class="mt-4">
-                    <el-input v-model="input3" :value="value" class="input-with-select">
-                        <template #prepend>
+                <div class="volume-input">
+                    <el-input v-model="input3" :value="`${volumeValue} tCO2e`" class="input-with-select">
+                        <template class="volume-input-prefix-suffix" #prepend>
                             <span>-</span>
                         </template>
-                        <template #append>
+                        <template class="volume-input-prefix-suffix" #append>
                             <span>+</span>
                         </template>
                     </el-input>
@@ -56,10 +55,10 @@
                 </div>
             </div>
             <div class="button-area">
-                <PurchaseCardButton :name="`Buy now`" />
-                <PurchaseCardButton :name="`Add to cart`" />
-                <PurchaseCardButton :name="`Create a bid`" />
-                <PurchaseCardButton :name="`Offtake`" />
+                <PurchaseCardButton :name="`Buy now`" blue :suffix="`$ 20,005.00`" />
+                <PurchaseCardButton :name="`Add to cart`" basic />
+                <PurchaseCardButton :name="`Create a bid`" basic />
+                <PurchaseCardButton :name="`Offtake`" gray />
             </div>
 
         </div>
@@ -67,12 +66,26 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import PurchaseCardButton from './PurchaseCardButton.vue';
 
-const input3 = ref('')
+const scrolling = () => {
+    console.log(window.scrollY)
+};
+onMounted(() => {
+    scrolling();
+});
 
-const value = ref('')
+//Problems Solutions 
+/**
+ * 1, you need to learn about the position of CSS
+ * 2, how to scroll to fix the element
+ */
+
+
+const input3 = ref('')
+const vintageValue = ref('')
+const volumeValue = ref('2,000')
 const options = [
     {
         value: '2018',
@@ -103,14 +116,18 @@ const options = [
 
 <style scoped>
 .project-bill {
+    position: sticky;
+    top: min(101px);
     display: flex;
     flex-direction: row;
     justify-content: center;
     padding: 20px 52px 52px 52px;
+    margin-right: 52px;
 
     .bill-item-container {
-        width: 400px;
-        height: 65vh;
+        /* width: 400px; */
+        height: min(550px);
+        min-width: 300px;
         margin-top: 19px;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-bottom-left-radius: 20px;
@@ -124,6 +141,14 @@ const options = [
             height: 10%;
             box-shadow: 0px 1px #F4F4F4;
             color: #525252;
+
+            .volume-input {
+                width: 60%;
+
+                .volume-input-prefix-suffix {
+                    padding: 0px 3px 0 3px;
+                }
+            }
 
             .bill-item-name {
                 font-size: 1.2rem;

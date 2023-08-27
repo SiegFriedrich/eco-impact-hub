@@ -1,5 +1,5 @@
 <template>
-    <img class="sdg-icons" :src="getImagePath(iconSrc!)" alt="No poverty" />
+    <img class="sdg-icons" :src="getImagePath(iconSrc!)" alt="SDG ICONS" />
 </template>
 
 <script setup lang="ts">

@@ -1,23 +1,24 @@
 <template>
     <div>
-        <el-container class="">
-            <el-header class="header common-margin">
+        <el-header class="header common-margin">
 
-                <EcoLogo />
+            <EcoLogo />
 
-                <div class="header-navi">
-                    <div class="title">Projects</div>
-                    <div class="title">About Us</div>
-                    <div class="icon-group">
-                        <div>
-                            <img src="../assets/shoppingcart.png" width="33" alt="shopping cart" />
-                        </div>
-                        <div>
-                            <img src="../assets/profile.png" width="36" alt="profile" />
-                        </div>
+            <div class="header-navi">
+                <div class="title">Projects</div>
+                <div class="title">About Us</div>
+                <div class="icon-group">
+                    <div>
+                        <img src="../assets/shoppingcart.png" width="33" alt="shopping cart" />
+                    </div>
+                    <div>
+                        <img src="../assets/profile.png" width="36" alt="profile" />
                     </div>
                 </div>
-            </el-header>
+            </div>
+        </el-header>
+        <el-container class="eco-content-container">
+
 
             <router-view />
 
@@ -34,11 +35,18 @@ import EcoLogo from '../elements/EcoLogo.vue'
 
 <style scoped lang="scss">
 .header {
+    height: 100px;
+    width: 100%;
+    position: fixed;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 19px;
+    // margin-top: 19px;
     margin-bottom: 19px;
+    z-index: 100;
+    background-color: #ffffff;
+    padding-left: 25px;
+    padding-right: 25px;
 
     .header-navi {
         display: flex;
@@ -66,4 +74,11 @@ import EcoLogo from '../elements/EcoLogo.vue'
         }
     }
 }
+
+.eco-content-container {
+    position: absolute;
+    top: 100px;
+}
+
+//Problems Solutions -> How to fix header on the top but the content will be scrollable?
 </style>
