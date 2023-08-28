@@ -90,9 +90,9 @@ const handleChange = (val: string[]) => {
 }
 
 const icons = ref([
-    '../assets/sdg-image/E_SDG_Icons-01.jpg',
-    '../assets/sdg-image/E_SDG_Icons-13.jpg',
-    '../assets/sdg-image/E_SDG_Icons-15.jpg',
+    '../assets/E_SDG_Icons-01.jpg',
+    '../assets/E_SDG_Icons-13.jpg',
+    '../assets/E_SDG_Icons-15.jpg',
 ])
 </script>
 
