@@ -1,8 +1,9 @@
 <template>
     <div class="common-layout">
         <el-container class="detail-container">
-            <el-header class="header" :style="{ 'background-image': `url('@/asset/')` }">
-                <!-- <img :src="getProjectImage(projectInfoResult[0]?.projectImage)" /> -->
+            <img :src="getProjectImage(projectInfoResult[0]?.projectImage)" />
+            <el-header class="header" :style="{ 'background-image': `url('../asset/farming-long.png')` }">
+
                 <div class="header-cover">
                     <el-button class="back-button" type="info" round @click="goToProjectPage()">
                         <UnionArrowLeft class="left-arrow" />
@@ -69,17 +70,17 @@ const projectInfos: ProjectInfo[] = [
         projectNo: '1002',
         projectCategory: 'ENERGY EFFICIENCY',
         projectName: 'Improved Cookstoves',
-        projectImage: 'ENERGY EFFICIENCY',
+        projectImage: 'cookstoves-long',
     }, {
         projectNo: '1003',
         projectCategory: 'AGRICULTURE',
         projectName: 'Carbon-Efficient Farming',
-        projectImage: 'agriculture',
+        projectImage: 'farming-long',
     }, {
         projectNo: '1004',
         projectCategory: 'REDD',
         projectName: 'Mindanao Forest Conservation',
-        projectImage: 'redd',
+        projectImage: 'forest-long',
     },
 ]
 
@@ -94,12 +95,11 @@ const imagePath = computed(() => {
     return new URL('../assets/' + projectInfoResult[0]?.projectImage + '.png', import.meta.url).href;
 })
 
-// const getProjectImage = (path: string) => {
-//     const res = path ? new URL('../assets/' + path + '.png', import.meta.url).href : '';
-//     return res;
-// }
+const getProjectImage = (path: string) => {
+    const res = path ? new URL('../assets/' + path + '.png', import.meta.url).href : '';
+    return res;
+}
 
-// `url(${imagePath})`
 const goToProjectPage = () => {
     router.push('/')
 }
@@ -144,6 +144,7 @@ console.log(imagePath);
 vmとvhの違いをわかってください！
 */
 .header {
+    margin-top: -206px;
     width: 100vw;
     height: min(206px);
     margin-left: 0;
@@ -152,8 +153,16 @@ vmとvhの違いをわかってください！
     background-size: cover;
 }
 
+img {
+    z-index: -1;
+    width: 100%;
+    height: 206px;
+    object-fit: cover;
+}
+
 .header-cover {
-    z-index: 99;
+    // margin-top: -210px;
+    z-index: 100;
     height: 166px;
     background: linear-gradient(to right, #7A7A7A, #7A7A7A00);
     padding: 20px 50px 20px 50px;
