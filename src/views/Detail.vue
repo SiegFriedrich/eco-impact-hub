@@ -1,7 +1,8 @@
 <template>
     <div class="common-layout">
-        <el-container>
-            <el-header class="header" :class="{ 'background-image': imagePath }">
+        <el-container class="detail-container">
+            <el-header class="header" :style="{ 'background-image': `url('@/asset/')` }">
+                <!-- <img :src="getProjectImage(projectInfoResult[0]?.projectImage)" /> -->
                 <div class="header-cover">
                     <el-button class="back-button" type="info" round @click="goToProjectPage()">
                         <UnionArrowLeft class="left-arrow" />
@@ -40,7 +41,7 @@ import UnionArrowLeft from '../elements/UnionArrowLeft.vue';
 import PurchaseCard from '../components/PurchaseCard.vue';
 import CollapsableDetail from '../components/CollapsableDetail.vue';
 import { useRoute } from 'vue-router'
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 const route = useRoute();
 // import { PropType, toRefs, onMounted } from 'vue';
 //Problems Solutions
@@ -89,11 +90,16 @@ const projectInfos: ProjectInfo[] = [
 //     projectImage: '',
 // })
 let projectInfoResult: ProjectInfo[] = [];
-let imagePath = ref(`url('../assets/project1banner.png')`);
-const getProjectImage = (path: string) => {
-    const res = path ? new URL('../assets/' + path + '.png', import.meta.url).href : '';
-    return res;
-}
+const imagePath = computed(() => {
+    return new URL('../assets/' + projectInfoResult[0]?.projectImage + '.png', import.meta.url).href;
+})
+
+// const getProjectImage = (path: string) => {
+//     const res = path ? new URL('../assets/' + path + '.png', import.meta.url).href : '';
+//     return res;
+// }
+
+// `url(${imagePath})`
 const goToProjectPage = () => {
     router.push('/')
 }
@@ -106,7 +112,7 @@ projectInfoResult = projectInfos.filter((el) => {
 })
 
 console.log(projectInfoResult);
-imagePath.value = getProjectImage(projectInfoResult[0]?.projectImage);
+// imagePath.value = getProjectImage(projectInfoResult[0]?.projectImage);
 console.log(imagePath);
 
 
@@ -119,6 +125,10 @@ console.log(imagePath);
         flex-direction: column;
         margin: auto;
     }
+}
+
+.detail-container {
+    margin-top: 100px;
 }
 
 .detail-page {

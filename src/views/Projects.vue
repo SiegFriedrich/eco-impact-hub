@@ -1,5 +1,5 @@
 <template>
-    <div class="common-margin">
+    <el-container class="common-margin">
         <el-header class="seconde-header">
             <div><el-text style="font-size: 40px;">Projects</el-text></div>
             <div>
@@ -24,7 +24,7 @@
                 </div>
             </el-aside>
 
-            <el-main class="padding-0">
+            <el-main>
                 <div class="images-container">
                     <div class="image-item" v-for="item in images" :key="item.path" @click="gotoDatailPage(item.detailNo)">
                         <div class="cover">
@@ -39,7 +39,7 @@
             </el-main>
 
         </el-container>
-    </div>
+    </el-container>
 </template>
 
 <script setup lang="ts">
@@ -79,6 +79,14 @@ const gotoDatailPage = (detailNo: string) => {
 </script>
 
 <style scoped lang="scss">
+@media (max-width:1770px) {
+    .images-container {
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
+
 .images-container {
     cursor: pointer;
     position: relative;
@@ -92,7 +100,7 @@ const gotoDatailPage = (detailNo: string) => {
         width: 440px;
         height: 250px;
         margin-bottom: 45px;
-        margin-right: min(20px);
+        margin-right: min(10px);
 
         .base {
             z-index: 1;
@@ -131,7 +139,8 @@ const gotoDatailPage = (detailNo: string) => {
 }
 
 .seconde-header {
-    margin-top: 42px;
+    position: relative;
+    margin-top: 100px;
     margin-bottom: 60px;
     display: flex;
     justify-content: space-between;
@@ -159,13 +168,16 @@ const gotoDatailPage = (detailNo: string) => {
     }
 
     .reset-button {
-        position: absolute;
         margin-top: 26px;
-        left: 40%;
-        margin-left: -52px;
+        margin-left: 25%;
     }
 }
 
+.eco-content-container {
+    position: absolute;
+    top: 100px;
+    width: 100%;
+}
 
 
 .footer {

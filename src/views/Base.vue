@@ -1,29 +1,23 @@
 <template>
-    <div>
-        <el-header class="header common-margin">
-
-            <EcoLogo />
-
-            <div class="header-navi">
-                <div class="title">Projects</div>
-                <div class="title">About Us</div>
-                <div class="icon-group">
-                    <div>
-                        <img src="../assets/shoppingcart.png" width="33" alt="shopping cart" />
-                    </div>
-                    <div>
-                        <img src="../assets/profile.png" width="36" alt="profile" />
-                    </div>
+    <el-header class="header common-margin">
+        <EcoLogo />
+        <div class="header-navi">
+            <div class="title">Projects</div>
+            <div class="title">About Us</div>
+            <div class="icon-group">
+                <div>
+                    <img src="../assets/shoppingcart.png" width="33" alt="shopping cart" />
+                </div>
+                <div>
+                    <img src="../assets/profile.png" width="36" alt="profile" />
                 </div>
             </div>
-        </el-header>
-        <el-container class="eco-content-container">
+        </div>
+    </el-header>
 
-
-            <router-view />
-
-        </el-container>
-    </div>
+    <el-container>
+        <router-view />
+    </el-container>
 </template>
   
 
@@ -75,10 +69,7 @@ import EcoLogo from '../elements/EcoLogo.vue'
     }
 }
 
-.eco-content-container {
-    position: absolute;
-    top: 100px;
-}
+
 
 //Problems Solutions -> How to fix header on the top but the content will be scrollable?
 </style>
