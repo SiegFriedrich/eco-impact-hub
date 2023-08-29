@@ -100,7 +100,7 @@ const gotoDatailPage = (detailNo: string) => {
         width: 440px;
         height: 250px;
         margin-bottom: 45px;
-        margin-right: min(10px);
+        margin-left: min(10px);
 
         .base {
             z-index: 1;
