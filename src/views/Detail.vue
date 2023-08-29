@@ -43,7 +43,7 @@ import UnionArrowLeft from '../elements/UnionArrowLeft.vue';
 import PurchaseCard from '../components/PurchaseCard.vue';
 import CollapsableDetail from '../components/CollapsableDetail.vue';
 import { useRoute } from 'vue-router'
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 const route = useRoute();
 // import { PropType, toRefs, onMounted } from 'vue';
 //Problems Solutions
