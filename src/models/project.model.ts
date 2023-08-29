@@ -3,4 +3,5 @@ export interface ProjectInfo {
     projectCategory: string;
     projectName: string;
     projectImage: string;
+    SDGIcons: string[];
 }

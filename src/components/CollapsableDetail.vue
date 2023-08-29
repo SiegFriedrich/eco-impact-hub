@@ -1,7 +1,7 @@
 <template>
     <div class="demo-collapse collapse-container">
         <el-collapse v-model="activeNames" @change="handleChange">
-            <el-collapse-item title="Description" name="1">
+            <el-collapse-item :title="`Description ${projectId}`" name="1">
                 <div>
                     The "One-to-Tree" initiative is a visionary tree planting project focused on addressing climate
                     change and fostering ecological restoration. This innovative project aims to convert
@@ -81,19 +81,30 @@
 </template>
   
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, toRefs, computed } from 'vue';
 import SDGIcon from '../components/SDGIcon.vue';
+
+const props = defineProps({
+    projectId: String,
+    SDGIcons: Array<String>,
+})
+
+const { SDGIcons, projectId } = toRefs(props);
 
 const activeNames = ref(['1'])
 const handleChange = (val: string[]) => {
     console.log(val)
 }
 
-const icons = ref([
-    '../assets/sdg-image/E_SDG_Icons-01.jpg',
-    '../assets/sdg-image/E_SDG_Icons-13.jpg',
-    '../assets/sdg-image/E_SDG_Icons-15.jpg',
-])
+// const icons = ref([
+//     '../assets/sdg-image/E_SDG_Icons-01.png',
+//     '../assets/sdg-image/E_SDG_Icons-13.png',
+//     '../assets/sdg-image/E_SDG_Icons-15.png',
+// ])
+
+const icons = computed(() => {
+    return SDGIcons?.value?.map((el) => `../assets/sdg-image/E_SDG_Icons-${el}.png`)
+})
 </script>
 
 <style lang="scss" scoped>

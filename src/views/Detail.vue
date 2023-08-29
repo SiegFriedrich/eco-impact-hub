@@ -19,7 +19,8 @@
 
             <el-main class="detail-page">
                 <div class="project-detail">
-                    <CollapsableDetail />
+                    <CollapsableDetail :projectId="projectInfoResult[0]?.projectNo"
+                        :SDGIcons="projectInfoResult[0]?.SDGIcons" />
                 </div>
 
                 <PurchaseCard />
@@ -66,21 +67,25 @@ const projectInfos: ProjectInfo[] = [
         projectCategory: 'AFFORESTATION',
         projectName: 'One-to-Tree',
         projectImage: 'afforestation',
+        SDGIcons: [`01`, `13`, `15`],
     }, {
         projectNo: '1002',
         projectCategory: 'ENERGY EFFICIENCY',
         projectName: 'Improved Cookstoves',
         projectImage: 'cookstoves-long',
+        SDGIcons: [`02`, `06`, `08`, `12`],
     }, {
         projectNo: '1003',
         projectCategory: 'AGRICULTURE',
         projectName: 'Carbon-Efficient Farming',
         projectImage: 'farming-long',
+        SDGIcons: [`03`, `04`, `14`],
     }, {
         projectNo: '1004',
         projectCategory: 'REDD',
         projectName: 'Mindanao Forest Conservation',
         projectImage: 'forest-long',
+        SDGIcons: [`06`, `08`, `10`, `11`, `13`],
     },
 ]
 
