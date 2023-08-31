@@ -93,7 +93,7 @@ const projectInfos: ProjectInfo[] = [
 
 let projectInfoResult: ProjectInfo[] = [];
 const getProjectImage = (path: string) => {
-    const res = path ? new URL('../assets/' + path + '.svg', import.meta.url).href : '';
+    const res = path ? new URL('../assets/' + path + '.png', import.meta.url).href : '';
     return res;
 }
 

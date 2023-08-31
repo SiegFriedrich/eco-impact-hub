@@ -1,6 +1,6 @@
 <template>
     <el-header class="header common-margin">
-        <EcoLogo />
+        <EcoLogo @click="backToHome()" class="pointer" />
         <div class="header-navi">
             <div class="title">Projects</div>
             <div class="title">About Us</div>
@@ -23,7 +23,11 @@
 
 <script setup lang="ts">
 import EcoLogo from '../elements/EcoLogo.vue'
-
+import { useRouter } from 'vue-router';
+const router = useRouter();
+const backToHome = () => {
+    router.push('/');
+}
 
 </script>
 
@@ -66,6 +70,10 @@ import EcoLogo from '../elements/EcoLogo.vue'
             align-items: center;
             margin-left: 50px;
         }
+    }
+
+    .pointer {
+        cursor: pointer;
     }
 }
 

@@ -57,18 +57,81 @@
             <div class="button-area">
                 <PurchaseCardButton :name="`Buy now`" blue :suffix="`$ 20,005.00`" />
                 <PurchaseCardButton :name="`Add to cart`" basic />
-                <PurchaseCardButton :name="`Create a bid`" basic />
-                <PurchaseCardButton :name="`Offtake`" gray />
+                <PurchaseCardButton :name="`Create a bid`" basic @click="createOneBidVisible = true" />
+                <PurchaseCardButton :name="`Offtake`" gray @click="offtakeVisible = true" />
             </div>
 
         </div>
+
+        <el-dialog v-model="createOneBidVisible" title="Creat a bid">
+            <el-form :model="form">
+                <el-form-item label="Promotion name" :label-width="formLabelWidth">
+                    <el-input v-model="form.name" autocomplete="off" />
+                </el-form-item>
+                <el-form-item label="Zones" :label-width="formLabelWidth">
+                    <el-select v-model="form.region" placeholder="Please select a zone">
+                        <el-option label="Zone No.1" value="shanghai" />
+                        <el-option label="Zone No.2" value="beijing" />
+                    </el-select>
+                </el-form-item>
+            </el-form>
+            <template #footer>
+                <span class="dialog-footer">
+                    <el-button @click="offtakeVisible = false">Cancel</el-button>
+                    <el-button type="primary" @click="offtakeVisible = false">
+                        Confirm
+                    </el-button>
+                </span>
+            </template>
+        </el-dialog>
+
+
+
+        <el-dialog v-model="offtakeVisible" title="Shipping address">
+            <el-form :model="form">
+                <el-form-item label="Promotion name" :label-width="formLabelWidth">
+                    <el-input v-model="form.name" autocomplete="off" />
+                </el-form-item>
+                <el-form-item label="Zones" :label-width="formLabelWidth">
+                    <el-select v-model="form.region" placeholder="Please select a zone">
+                        <el-option label="Zone No.1" value="shanghai" />
+                        <el-option label="Zone No.2" value="beijing" />
+                    </el-select>
+                </el-form-item>
+            </el-form>
+            <template #footer>
+                <span class="dialog-footer">
+                    <el-button @click="offtakeVisible = false">Cancel</el-button>
+                    <el-button type="primary" @click="offtakeVisible = false">
+                        Confirm
+                    </el-button>
+                </span>
+            </template>
+        </el-dialog>
+
+
     </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import PurchaseCardButton from './PurchaseCardButton.vue';
+// import PopupModal from './PopupModal.vue';
 
+const createOneBidVisible = ref(false)
+const offtakeVisible = ref(false)
+
+const form = reactive({
+    name: '',
+    region: '',
+    date1: '',
+    date2: '',
+    delivery: false,
+    type: [],
+    resource: '',
+    desc: '',
+})
+const formLabelWidth = '140px'
 const scrolling = () => {
     console.log(window.scrollY)
 };

@@ -62,14 +62,14 @@ const mainMenu = [
 ]
 
 const getImagePath = (path: string) => {
-    return new URL(`../assets/${path}.svg`, import.meta.url).href
+    return new URL(`../assets/${path}.png`, import.meta.url).href
 }
 
 const images = [
-    { path: 'afforestation', category: 'AFFORESTATION', title: 'One-to-Tree', detailNo: '1001' },
-    { path: 'energyefficiency', category: 'ENERGY EFFICIENCY', title: 'Improved Cookstoves', detailNo: '1002' },
-    { path: 'agriculture', category: 'AGRICULTURE', title: 'Carbon-Efficient Farming', detailNo: '1003' },
-    { path: 'redd', category: 'REDD', title: 'Mindanao Forest Conservation', detailNo: '1004' },
+    { path: 'thumbnail_afforestation', category: 'AFFORESTATION', title: 'One-to-Tree', detailNo: '1001' },
+    { path: 'thumbnail_energyefficiency', category: 'ENERGY EFFICIENCY', title: 'Improved Cookstoves', detailNo: '1002' },
+    { path: 'thumbnail_agriculture', category: 'AGRICULTURE', title: 'Carbon-Efficient Farming', detailNo: '1003' },
+    { path: 'thumbnail_redd', category: 'REDD', title: 'Mindanao Forest Conservation', detailNo: '1004' },
 ]
 
 const gotoDatailPage = (detailNo: string) => {
@@ -104,6 +104,11 @@ const gotoDatailPage = (detailNo: string) => {
 
         .base {
             z-index: 1;
+
+            img {
+                border-radius: 20px;
+            }
+
         }
 
         .cover {
