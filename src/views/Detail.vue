@@ -22,7 +22,6 @@
                     <CollapsableDetail :projectId="projectInfoResult[0]?.projectNo"
                         :SDGIcons="projectInfoResult[0]?.SDGIcons" />
                 </div>
-
                 <PurchaseCard />
             </el-main>
         </el-container>
@@ -66,42 +65,36 @@ const projectInfos: ProjectInfo[] = [
         projectNo: '1001',
         projectCategory: 'AFFORESTATION',
         projectName: 'One-to-Tree',
-        projectImage: 'afforestation',
+        projectImage: 'banner_afforestation',
         SDGIcons: [`01`, `13`, `15`],
     }, {
         projectNo: '1002',
         projectCategory: 'ENERGY EFFICIENCY',
         projectName: 'Improved Cookstoves',
-        projectImage: 'cookstoves-long',
+        projectImage: 'banner_cookstoves',
         SDGIcons: [`02`, `06`, `08`, `12`],
     }, {
         projectNo: '1003',
         projectCategory: 'AGRICULTURE',
         projectName: 'Carbon-Efficient Farming',
-        projectImage: 'farming-long',
+        projectImage: 'banner_farming',
         SDGIcons: [`03`, `04`, `14`],
     }, {
         projectNo: '1004',
         projectCategory: 'REDD',
         projectName: 'Mindanao Forest Conservation',
-        projectImage: 'forest-long',
+        projectImage: 'banner_forest',
         SDGIcons: [`06`, `08`, `10`, `11`, `13`],
     },
 ]
 
-// let projectInfoResult = reactive({
-//     projectNo: '',
-//     projectCategory: '',
-//     projectName: '',
-//     projectImage: '',
-// })
 let projectInfoResult: ProjectInfo[] = [];
 const imagePath = computed(() => {
-    return new URL('../assets/' + projectInfoResult[0]?.projectImage + '.png', import.meta.url).href;
+    return new URL('../assets/' + projectInfoResult[0]?.projectImage + '.svg', import.meta.url).href;
 })
 
 const getProjectImage = (path: string) => {
-    const res = path ? new URL('../assets/' + path + '.png', import.meta.url).href : '';
+    const res = path ? new URL('../assets/' + path + '.svg', import.meta.url).href : '';
     return res;
 }
 

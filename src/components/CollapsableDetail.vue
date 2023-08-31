@@ -103,7 +103,7 @@ const handleChange = (val: string[]) => {
 // ])
 
 const icons = computed(() => {
-    return SDGIcons?.value?.map((el) => `../assets/sdg-image/E_SDG_Icons-${el}.png`)
+    return SDGIcons?.value?.map((el) => `../assets/sdg-image/E_SDG_Icons-${el}.svg`)
 })
 </script>
 

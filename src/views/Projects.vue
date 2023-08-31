@@ -98,7 +98,7 @@ const gotoDatailPage = (detailNo: string) => {
     .image-item {
 
         width: 440px;
-        height: 250px;
+        height: 270px;
         margin-bottom: 45px;
         margin-left: min(10px);
 
@@ -114,7 +114,7 @@ const gotoDatailPage = (detailNo: string) => {
             width: 440px;
             height: 125px;
             background: linear-gradient(to bottom, #7A7A7A00, #7A7A7A);
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             border-bottom-left-radius: 20px;
             border-bottom-right-radius: 20px;
 
@@ -134,6 +134,12 @@ const gotoDatailPage = (detailNo: string) => {
                 }
             }
 
+        }
+    }
+
+    .image-item:hover {
+        .cover {
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
     }
 }
