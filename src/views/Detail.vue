@@ -2,8 +2,7 @@
     <div class="common-layout">
         <el-container class="detail-container">
             <img :src="getProjectImage(projectInfoResult[0]?.projectImage)" />
-            <el-header class="header" :style="{ 'background-image': `url('../asset/farming-long.png')` }">
-
+            <el-header class="header">
                 <div class="header-cover">
                     <el-button class="back-button" type="info" round @click="goToProjectPage()">
                         <UnionArrowLeft class="left-arrow" />
@@ -42,12 +41,16 @@ import UnionArrowLeft from '../elements/UnionArrowLeft.vue';
 import PurchaseCard from '../components/PurchaseCard.vue';
 import CollapsableDetail from '../components/CollapsableDetail.vue';
 import { useRoute } from 'vue-router'
-import { computed } from 'vue';
 const route = useRoute();
 // import { PropType, toRefs, onMounted } from 'vue';
 //Problems Solutions
 /**
  * How to pass img src to children when i do this below it doesnt work.
+ */
+
+//Problems Solution
+/**
+ * 如何从父组件向子组件传递事件方法？
  */
 
 
@@ -89,10 +92,6 @@ const projectInfos: ProjectInfo[] = [
 ]
 
 let projectInfoResult: ProjectInfo[] = [];
-const imagePath = computed(() => {
-    return new URL('../assets/' + projectInfoResult[0]?.projectImage + '.svg', import.meta.url).href;
-})
-
 const getProjectImage = (path: string) => {
     const res = path ? new URL('../assets/' + path + '.svg', import.meta.url).href : '';
     return res;
@@ -108,13 +107,6 @@ console.log(projectNo);
 projectInfoResult = projectInfos.filter((el) => {
     return el.projectNo === projectNo;
 })
-
-console.log(projectInfoResult);
-// imagePath.value = getProjectImage(projectInfoResult[0]?.projectImage);
-console.log(imagePath);
-
-
-
 </script>
 
 <style scoped lang="scss">
