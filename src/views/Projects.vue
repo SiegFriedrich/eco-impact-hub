@@ -12,16 +12,10 @@
 
         <el-container>
             <el-aside class="side" width="200px">
-                <ul>
-                    <li class="menu-item" v-for="item in mainMenu" :key="item.name">{{ item.name }}
-                        <el-icon>
-                            <ArrowDown />
-                        </el-icon>
-                    </li>
-                </ul>
-                <div>
+                <div class="reset-section">
                     <el-button class="reset-button" type="info" round>Reset filters</el-button>
                 </div>
+                <SideMenu />
             </el-aside>
 
             <el-main>
@@ -45,21 +39,13 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import ClearableInput from '../components/ClearableInput.vue'
+import SideMenu from '../components/SideMenu.vue';
 
 const router = useRouter();
 /**
  * How to deal with dynamic path import in vite vue3
  * https://juejin.cn/post/7030698018609315871
  */
-
-const mainMenu = [
-    { name: 'Vintage' },
-    { name: 'Project Type' },
-    { name: 'Mechanism' },
-    { name: 'Country' },
-    { name: 'Registry' },
-    { name: 'Price' }
-]
 
 const getImagePath = (path: string) => {
     return new URL(`../assets/${path}.png`, import.meta.url).href
@@ -166,6 +152,18 @@ const gotoDatailPage = (detailNo: string) => {
         width: 80%;
     }
 
+    .reset-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .reset-button {
+            margin-bottom: 26px;
+            margin-right: 20%;
+
+        }
+    }
+
     .menu-item {
         display: flex;
         justify-content: space-between;
@@ -178,10 +176,7 @@ const gotoDatailPage = (detailNo: string) => {
         cursor: pointer;
     }
 
-    .reset-button {
-        margin-top: 26px;
-        margin-left: 25%;
-    }
+
 }
 
 .eco-content-container {

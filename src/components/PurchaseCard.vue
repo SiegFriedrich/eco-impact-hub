@@ -55,8 +55,8 @@
                 </div>
             </div>
             <div class="button-area">
-                <PurchaseCardButton :name="`Buy now`" blue :suffix="`$ 20,005.00`" />
-                <PurchaseCardButton :name="`Add to cart`" basic />
+                <PurchaseCardButton @click="open3" :name="`Buy now`" blue :suffix="`$ 20,005.00`" />
+                <PurchaseCardButton @click="open3" :name="`Add to cart`" basic />
                 <PurchaseCardButton :name="`Create a bid`" basic @click="createOneBidVisible = true" />
                 <PurchaseCardButton :name="`Offtake`" gray @click="offtakeVisible = true" />
             </div>
@@ -68,12 +68,18 @@
             <el-form :model="form">
                 <el-form-item>
                     <label for="form.offer">Your offer *</label>
-                    <el-input v-model="form.offer" placeholder="How much would you pay per ton?" clearable />
+                    <div class="modal-input-wrapper">
+                        <el-input v-model="form.offer" placeholder="How much would you pay per ton?" clearable />
+                        <span style="z-index: 10;">USD/tCO2e</span>
+                    </div>
                 </el-form-item>
                 <el-form-item>
-                    <label>Volume of credits *</label>
-                    <el-input v-model="form.credits" autocomplete="off"
-                        placeholder="How many times would you like to purchase?" />
+                    <label for="form.credits">Volume of credits *</label>
+                    <div class="modal-input-wrapper offtake">
+                        <el-input v-model="form.credits" placeholder="How many times would you like to purchase?"
+                            clearable />
+                        <span style="z-index: 10;">tCO2e</span>
+                    </div>
                 </el-form-item>
                 <el-form-item>
                     <label>Vintage *</label>
@@ -180,6 +186,7 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue'
 import PurchaseCardButton from './PurchaseCardButton.vue';
+import { ElNotification } from 'element-plus';
 
 const createOneBidVisible = ref(false)
 const offtakeVisible = ref(false)
@@ -197,7 +204,13 @@ const form = reactive({
     from: '',
     to: '',
 })
-
+const open3 = () => {
+    ElNotification({
+        title: 'Info',
+        message: 'The function of this button has not been written',
+        type: 'info',
+    })
+}
 const creatBid = () => {
     createOneBidVisible.value = false;
     centerDialogVisible.value = true;

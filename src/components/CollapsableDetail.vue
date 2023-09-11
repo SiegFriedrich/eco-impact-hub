@@ -22,7 +22,7 @@
             </el-collapse-item>
             <el-collapse-item title="Sustainable Development Contributions" name="2">
                 <div class="detail-content">
-                    <SDGIcon v-for="el in icons" :key="el" :iconSrc="el" />
+                    <SDGIcon v-for="el in icons" :key="el" :iconSrc="el" SDGContent />
                 </div>
             </el-collapse-item>
             <el-collapse-item title="Project Details" name="3">

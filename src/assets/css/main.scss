@@ -1,9 +1,4 @@
-.eco-impact-search{
-    .el-input__wrapper {
-        box-shadow:none;
-    }
-}
-
+//GLobal
 .common-margin {
     padding-left: 45px;
     padding-right: 45px;
@@ -22,17 +17,40 @@
     border-radius: 15px;
 }
 
+
+
+
+// Project.vue
+.eco-impact-search{
+    .el-input__wrapper {
+        box-shadow:none;
+    }
+}
+
+.side-menu {
+    .el-collapse{
+        width: 86%;
+    }
+    .el-collapse-item__header {
+        color: #A19F9F;
+        font-size: 15px;
+        font-weight: 400;
+    }
+
+}
+
+
+// PurchaseCard.vue
 .popupmodal{
     .el-dialog__body{
         padding: calc(var(--el-dialog-padding-primary) + 10px) calc(var(--el-dialog-padding-primary) + 19px);
         .el-input__wrapper{
-
             -webkit-border-radius: 10px;
             -moz-border-radius: 10px;
             -ms-border-radius: 10px;
             -o-border-radius: 10px;
             border-radius: 10px;
-    }
+        }
         .el-form-item__content{
             display: block;
             .el-select{

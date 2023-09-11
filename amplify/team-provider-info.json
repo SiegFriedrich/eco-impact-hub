@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplifya813048971fb4-staging-115735-authRole",
+      "UnauthRoleArn": "arn:aws:iam::170863238114:role/amplify-amplifya813048971fb4-staging-115735-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::170863238114:role/amplify-amplifya813048971fb4-staging-115735-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-amplifya813048971fb4-staging-115735-deployment",
+      "UnauthRoleName": "amplify-amplifya813048971fb4-staging-115735-unauthRole",
+      "StackName": "amplify-amplifya813048971fb4-staging-115735",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:170863238114:stack/amplify-amplifya813048971fb4-staging-115735/65ce2b20-509a-11ee-8d32-0ad2b79aec81",
+      "AmplifyAppId": "d1xhuigz0pop5v"
+    },
+    "categories": {
+      "auth": {
+        "ecoimpacthub": {}
+      }
+    }
+  }
+}

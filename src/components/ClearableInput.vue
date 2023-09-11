@@ -1,13 +1,21 @@
 <template>
     <div class="clearable-input">
         <el-input class="eco-impact-search" v-model="input" placeholder="Search project here" clearable />
-        <el-button class="search-button" type="info" round>Search</el-button>
+        <el-button class="search-button" @click="open3" type="info" round>Search</el-button>
     </div>
 </template>
   
 <script lang="ts" setup>
+import { ElNotification } from 'element-plus';
 import { ref } from 'vue'
 const input = ref('')
+const open3 = () => {
+    ElNotification({
+        title: 'Info',
+        message: 'This function has not been implemented',
+        type: 'info',
+    })
+}
 </script>
 <style scoped lang="scss">
 .clearable-input {
