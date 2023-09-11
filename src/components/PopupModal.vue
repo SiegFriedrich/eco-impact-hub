@@ -28,10 +28,11 @@
 import { reactive, ref } from 'vue';
 
 const props = defineProps({
-    ifVisible: Boolean,
+    createOneBidVisible: Boolean,
+    offtakeVisible: Boolean,
 });
 
-const visible = ref(props.ifVisible);
+const visible = ref(props.createOneBidVisible);
 console.log(visible);
 
 // const createOneBidVisible = ref(false)

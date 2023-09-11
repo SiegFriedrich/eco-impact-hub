@@ -63,52 +63,103 @@
 
         </div>
 
-        <el-dialog v-model="createOneBidVisible" title="Creat a bid">
+        <el-dialog class="popupmodal bid-modal" v-model="createOneBidVisible" title="Creat a bid">
+            <div class="bottom-line" />
             <el-form :model="form">
-                <el-form-item label="Promotion name" :label-width="formLabelWidth">
-                    <el-input v-model="form.name" autocomplete="off" />
+                <el-form-item>
+                    <label for="form.offer">Your offer *</label>
+                    <el-input v-model="form.offer" placeholder="How much would you pay per ton?" clearable />
                 </el-form-item>
-                <el-form-item label="Zones" :label-width="formLabelWidth">
-                    <el-select v-model="form.region" placeholder="Please select a zone">
+                <el-form-item>
+                    <labe>Volume of credits *</labe>
+                    <el-input v-model="form.credits" autocomplete="off"
+                        placeholder="How many times would you like to purchase?" />
+                </el-form-item>
+                <el-form-item>
+                    <label>Vintage *</label>
+                    <el-select v-model="form.region" placeholder="Which vintage would you like to purchase?">
                         <el-option label="Zone No.1" value="shanghai" />
                         <el-option label="Zone No.2" value="beijing" />
                     </el-select>
                 </el-form-item>
-            </el-form>
-            <template #footer>
-                <span class="dialog-footer">
-                    <el-button @click="offtakeVisible = false">Cancel</el-button>
-                    <el-button type="primary" @click="offtakeVisible = false">
-                        Confirm
-                    </el-button>
-                </span>
-            </template>
-        </el-dialog>
-
-
-
-        <el-dialog v-model="offtakeVisible" title="Shipping address">
-            <el-form :model="form">
-                <el-form-item label="Promotion name" :label-width="formLabelWidth">
-                    <el-input v-model="form.name" autocomplete="off" />
-                </el-form-item>
-                <el-form-item label="Zones" :label-width="formLabelWidth">
-                    <el-select v-model="form.region" placeholder="Please select a zone">
+                <el-form-item>
+                    <label>Offer valid until after *</label>
+                    <el-select v-model="form.region" placeholder="Until when is your offer valid?">
                         <el-option label="Zone No.1" value="shanghai" />
                         <el-option label="Zone No.2" value="beijing" />
                     </el-select>
                 </el-form-item>
+                <el-form-item>
+                    <label>Message to the developer (optional)</label>
+                    <el-input v-model="form.desc" type="textarea" rows="5" placeholder="Your message" />
+                </el-form-item>
             </el-form>
             <template #footer>
                 <span class="dialog-footer">
-                    <el-button @click="offtakeVisible = false">Cancel</el-button>
-                    <el-button type="primary" @click="offtakeVisible = false">
-                        Confirm
-                    </el-button>
+                    <el-button class="bid-btn" type="primary" round>Create bid</el-button>
                 </span>
+                <div class="footer-info">
+                    <span>Total</span>
+                    <span>$ 0.00</span>
+                </div>
             </template>
         </el-dialog>
 
+        <el-dialog class="popupmodal offtake-modal" v-model="offtakeVisible" title="Offtake">
+            <div class="bottom-line" />
+            <el-form :model="form">
+                <el-form-item>
+                    <label for="form.offer">Your offer *</label>
+                    <div class="modal-input-wrapper">
+                        <el-input v-model="form.offer" placeholder="How much would you pay per ton?" clearable />
+                        <span style="z-index: 10;">USD/tCO2e</span>
+                    </div>
+                </el-form-item>
+                <el-form-item>
+                    <labe for="form.credits">Volume of credits *</labe>
+                    <div class="modal-input-wrapper offtake">
+                        <el-input v-model="form.credits" placeholder="How many times would you like to purchase?"
+                            clearable />
+                        <span style="z-index: 10;">tCO2e</span>
+                    </div>
+                </el-form-item>
+                <el-form-item>
+                    <label>Vintage (Optional)</label>
+                    <div class="vintage-select">
+                        <div>From</div>
+                        <el-select v-model="form.from" placeholder="Start">
+                            <el-option label="Zone No.1" value="shanghai" />
+                            <el-option label="Zone No.2" value="beijing" />
+                        </el-select>
+                        <div>To</div>
+                        <el-select v-model="form.to" placeholder="End">
+                            <el-option label="Zone No.1" value="shanghai" />
+                            <el-option label="Zone No.2" value="beijing" />
+                        </el-select>
+                    </div>
+                </el-form-item>
+                <el-form-item>
+                    <label>Offer valid until after *</label>
+                    <el-select v-model="form.region" placeholder="Until when is your offer valid?">
+                        <el-option label="Zone No.1" value="shanghai" />
+                        <el-option label="Zone No.2" value="beijing" />
+                    </el-select>
+                </el-form-item>
+                <el-form-item>
+                    <label>Message to the developer (optional)</label>
+                    <el-input v-model="form.desc" type="textarea" rows="5" placeholder="Your message" />
+                </el-form-item>
+            </el-form>
+            <template #footer>
+                <span class="dialog-footer">
+                    <el-button class="offtake-btn" type="primary" round>Create proposal</el-button>
+                </span>
+                <div class="footer-info">
+                    <span>Total</span>
+                    <span>$ 0.00</span>
+                </div>
+            </template>
+        </el-dialog>
 
     </div>
 </template>
@@ -122,7 +173,8 @@ const createOneBidVisible = ref(false)
 const offtakeVisible = ref(false)
 
 const form = reactive({
-    name: '',
+    offer: '',
+    credits: '',
     region: '',
     date1: '',
     date2: '',
@@ -130,6 +182,8 @@ const form = reactive({
     type: [],
     resource: '',
     desc: '',
+    from: '',
+    to: '',
 })
 const formLabelWidth = '140px'
 const scrolling = () => {
@@ -253,6 +307,50 @@ const options = [
         }
 
 
+    }
+}
+
+.bid-btn {
+    background-color: #004D84;
+    margin-right: 19px;
+}
+
+.offtake-btn {
+    background-color: #1D91A2;
+    margin-right: 19px;
+}
+
+.footer-info {
+    margin: 34px 19px 10px 19px;
+    display: flex;
+    justify-content: space-between;
+    color: #525252;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.modal-input-wrapper {
+    display: flex;
+
+    span {
+        color: #525252;
+    }
+
+    .el-input__wrapper {
+        margin-right: -84px;
+    }
+
+}
+
+.vintage-select {
+    display: flex;
+
+    el-select {
+        margin: 0 10px 0 10px;
+    }
+
+    span {
+        margin-right: 10px;
     }
 }
 </style>
