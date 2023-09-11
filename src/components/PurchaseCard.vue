@@ -71,7 +71,7 @@
                     <el-input v-model="form.offer" placeholder="How much would you pay per ton?" clearable />
                 </el-form-item>
                 <el-form-item>
-                    <labe>Volume of credits *</labe>
+                    <label>Volume of credits *</label>
                     <el-input v-model="form.credits" autocomplete="off"
                         placeholder="How many times would you like to purchase?" />
                 </el-form-item>
@@ -96,7 +96,8 @@
             </el-form>
             <template #footer>
                 <span class="dialog-footer">
-                    <el-button class="bid-btn" type="primary" round>Create bid</el-button>
+                    <el-button class="bid-btn" type="primary" round @click="creatBid">Create
+                        bid</el-button>
                 </span>
                 <div class="footer-info">
                     <span>Total</span>
@@ -116,7 +117,7 @@
                     </div>
                 </el-form-item>
                 <el-form-item>
-                    <labe for="form.credits">Volume of credits *</labe>
+                    <label for="form.credits">Volume of credits *</label>
                     <div class="modal-input-wrapper offtake">
                         <el-input v-model="form.credits" placeholder="How many times would you like to purchase?"
                             clearable />
@@ -161,17 +162,28 @@
             </template>
         </el-dialog>
 
+        <el-dialog v-model="centerDialogVisible" title="Warning" width="30%" center>
+            <span> It should be noted that the content will not be aligned in center by default </span>
+            <template #footer>
+                <span class="dialog-footer">
+                    <el-button @click="centerDialogVisible = false">Cancel</el-button>
+                    <el-button type="primary" @click="centerDialogVisible = false">
+                        Confirm
+                    </el-button>
+                </span>
+            </template>
+        </el-dialog>
+
     </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue'
 import PurchaseCardButton from './PurchaseCardButton.vue';
-// import PopupModal from './PopupModal.vue';
 
 const createOneBidVisible = ref(false)
 const offtakeVisible = ref(false)
-
+const centerDialogVisible = ref(false)
 const form = reactive({
     offer: '',
     credits: '',
@@ -185,7 +197,12 @@ const form = reactive({
     from: '',
     to: '',
 })
-const formLabelWidth = '140px'
+
+const creatBid = () => {
+    createOneBidVisible.value = false;
+    centerDialogVisible.value = true;
+
+}
 const scrolling = () => {
     console.log(window.scrollY)
 };
