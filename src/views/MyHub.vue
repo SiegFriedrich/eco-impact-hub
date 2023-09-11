@@ -1,7 +1,7 @@
 <template>
     <el-container class="common-margin">
         <el-header class="seconde-header">
-            <div><el-text style="font-size: 40px;">Projects</el-text></div>
+            <div><el-text style="font-size: 40px;">My Hub</el-text></div>
             <div>
                 <ClearableInput :placeholderMessage="placeholderMsg" />
             </div>
@@ -19,17 +19,7 @@
             </el-aside>
 
             <el-main>
-                <div class="images-container">
-                    <div class="image-item" v-for="item in images" :key="item.path" @click="gotoDatailPage(item.detailNo)">
-                        <div class="cover">
-                            <div class="description">
-                                <span class="category">{{ item.category }}</span> <br />
-                                <span class="title">{{ item.title }}</span>
-                            </div>
-                        </div>
-                        <div class="base"><img :src="getImagePath(item.path)"></div>
-                    </div>
-                </div>
+                myhub
             </el-main>
 
         </el-container>
@@ -37,20 +27,21 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
+// import { useRouter } from 'vue-router';
 import ClearableInput from '../components/ClearableInput.vue'
 import SideMenu from '../components/SideMenu.vue';
 import { ElNotification } from 'element-plus';
-
-const router = useRouter();
+import { ref } from 'vue';
+const placeholderMsg = ref('Search message here')
+// const router = useRouter();
 /**
  * How to deal with dynamic path import in vite vue3
  * https://juejin.cn/post/7030698018609315871
  */
-const placeholderMsg = 'Search project here'
-const getImagePath = (path: string) => {
-    return new URL(`../assets/${path}.png`, import.meta.url).href
-}
+
+// const getImagePath = (path: string) => {
+//     return new URL(`../assets/${path}.png`, import.meta.url).href
+// }
 const open3 = () => {
     ElNotification({
         title: 'Info',
@@ -59,17 +50,7 @@ const open3 = () => {
     })
 }
 
-const images = [
-    { path: 'thumbnail_afforestation', category: 'AFFORESTATION', title: 'One-to-Tree', detailNo: '1001' },
-    { path: 'thumbnail_energyefficiency', category: 'ENERGY EFFICIENCY', title: 'Improved Cookstoves', detailNo: '1002' },
-    { path: 'thumbnail_agriculture', category: 'AGRICULTURE', title: 'Carbon-Efficient Farming', detailNo: '1003' },
-    { path: 'thumbnail_redd', category: 'REDD', title: 'Mindanao Forest Conservation', detailNo: '1004' },
-]
 
-const gotoDatailPage = (detailNo: string) => {
-    console.log(detailNo)
-    router.push(`/projects/detail/${detailNo}`);
-}
 </script>
 
 <style scoped lang="scss">

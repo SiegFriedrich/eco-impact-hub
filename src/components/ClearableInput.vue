@@ -1,13 +1,18 @@
 <template>
     <div class="clearable-input">
-        <el-input class="eco-impact-search" v-model="input" placeholder="Search project here" clearable />
+        <el-input class="eco-impact-search" v-model="input" :placeholder="placeholderMessage" clearable />
         <el-button class="search-button" @click="open3" type="info" round>Search</el-button>
     </div>
 </template>
   
 <script lang="ts" setup>
 import { ElNotification } from 'element-plus';
-import { ref } from 'vue'
+import { ref, toRefs } from 'vue'
+const props = defineProps({
+    placeholderMessage: String
+})
+
+const { placeholderMessage } = toRefs(props)
 const input = ref('')
 const open3 = () => {
     ElNotification({

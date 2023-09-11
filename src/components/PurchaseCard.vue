@@ -159,7 +159,7 @@
             </el-form>
             <template #footer>
                 <span class="dialog-footer">
-                    <el-button class="offtake-btn" type="primary" round>Create proposal</el-button>
+                    <el-button class="offtake-btn" @click="creatOffTake" type="primary" round>Create proposal</el-button>
                 </span>
                 <div class="footer-info">
                     <span>Total</span>
@@ -168,14 +168,26 @@
             </template>
         </el-dialog>
 
-        <el-dialog v-model="centerDialogVisible" title="Warning" width="30%" center>
-            <span> It should be noted that the content will not be aligned in center by default </span>
+        <el-dialog v-model="centerBidVisible" width="30%" center>
+            <div class="center-dialog">
+                <img src="../assets/bid.png" />
+                <span> Bid created </span>
+            </div>
             <template #footer>
                 <span class="dialog-footer">
-                    <el-button @click="centerDialogVisible = false">Cancel</el-button>
-                    <el-button type="primary" @click="centerDialogVisible = false">
-                        Confirm
-                    </el-button>
+                    Please check “Bids & Offers” under “My Hub”.
+                </span>
+            </template>
+        </el-dialog>
+
+        <el-dialog v-model="centerOfftakeVisible" width="30%" center>
+            <div class="center-dialog">
+                <img src="../assets/offtake.png" />
+                <span> Offtake proposal created </span>
+            </div>
+            <template #footer>
+                <span class="dialog-footer">
+                    Please check “Bids & Offers” under “My Hub”.
                 </span>
             </template>
         </el-dialog>
@@ -190,7 +202,9 @@ import { ElNotification } from 'element-plus';
 
 const createOneBidVisible = ref(false)
 const offtakeVisible = ref(false)
-const centerDialogVisible = ref(false)
+const centerBidVisible = ref(false)
+const centerOfftakeVisible = ref(false)
+
 const form = reactive({
     offer: '',
     credits: '',
@@ -213,9 +227,17 @@ const open3 = () => {
 }
 const creatBid = () => {
     createOneBidVisible.value = false;
-    centerDialogVisible.value = true;
+    //Promise => transfer data to backend!
+    centerBidVisible.value = true;
 
 }
+
+const creatOffTake = () => {
+    offtakeVisible.value = false;
+    //Promise => transfer data to backend!
+    centerOfftakeVisible.value = true;
+}
+
 const scrolling = () => {
     console.log(window.scrollY)
 };
@@ -382,5 +404,14 @@ const options = [
     span {
         margin-right: 10px;
     }
+}
+
+.center-dialog {
+    img {
+        max-width: 200px;
+    }
+
+    display: flex;
+    flex-direction:column-reverse;
 }
 </style>

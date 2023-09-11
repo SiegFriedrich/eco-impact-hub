@@ -17,6 +17,9 @@ const routes: Array<RouteRecordRaw> = [
           },
           component: () =>
             import(/* webpackChunkName: "about" */ "../views/Projects.vue"),
+            children:[
+
+            ]
         },
         {
           path: "/projects/detail/:id",
@@ -27,6 +30,16 @@ const routes: Array<RouteRecordRaw> = [
           },
           component: () =>
             import(/* webpackChunkName: "about" */ "../views/Detail.vue"),
+        },
+        {
+          path: "/myhub",
+          name: "myhub",
+          meta: {
+            isShow: true,
+            title: "index",
+          },
+          component: () =>
+            import(/* webpackChunkName: "about" */ "../views/MyHub.vue"),
         },
     ]
   },

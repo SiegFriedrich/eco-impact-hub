@@ -3,72 +3,52 @@
         <el-collapse v-model="activeNames" @change="handleChange">
             <el-collapse-item title="Vintage" name="1">
                 <div class="vintage-select">
-                    <div>From</div>
-                    <el-select v-model="form.from" placeholder="Start">
-                        <el-option label="Zone No.1" value="shanghai" />
-                        <el-option label="Zone No.2" value="beijing" />
-                    </el-select>
-                    <div>To</div>
-                    <el-select v-model="form.to" placeholder="End">
-                        <el-option label="Zone No.1" value="shanghai" />
-                        <el-option label="Zone No.2" value="beijing" />
-                    </el-select>
+                    <div>
+                        <span>From</span>
+                        <el-select v-model="form.from" placeholder="Start">
+                            <el-option label="Zone No.1" value="shanghai" />
+                            <el-option label="Zone No.2" value="beijing" />
+                        </el-select>
+                    </div>
+                    <div>
+                        <span>To</span>
+                        <el-select v-model="form.to" placeholder="End">
+                            <el-option label="Zone No.1" value="shanghai" />
+                            <el-option label="Zone No.2" value="beijing" />
+                        </el-select>
+                    </div>
                 </div>
             </el-collapse-item>
             <el-collapse-item title="Project Type" name="2">
                 <div>
-                    Operation feedback: enable the users to clearly perceive their
-                    operations by style updates and interactive effects;
-                </div>
-                <div>
-                    Visual feedback: reflect current state by updating or rearranging
-                    elements of the page.
+                    <CheckBoxGroup :elements="cities" />
                 </div>
             </el-collapse-item>
             <el-collapse-item title="Mechanism" name="3">
                 <div>
-                    Simplify the process: keep operating process simple and intuitive;
-                </div>
-                <div>
-                    Definite and clear: enunciate your intentions clearly so that the
-                    users can quickly understand and make decisions;
-                </div>
-                <div>
-                    Easy to identify: the interface should be straightforward, which helps
-                    the users to identify and frees them from memorizing and recalling.
+                    <CheckBoxGroup :elements="mechanisms" />
                 </div>
             </el-collapse-item>
             <el-collapse-item title="Country" name="4">
                 <div>
-                    Decision making: giving advices about operations is acceptable, but do
-                    not make decisions for the users;
-                </div>
-                <div>
-                    Controlled consequences: users should be granted the freedom to
-                    operate, including canceling, aborting or terminating current
-                    operation.
+                    <CheckBoxGroup :elements="countries" />
                 </div>
             </el-collapse-item>
-            <el-collapse-item title="Registry" name="4">
+            <el-collapse-item title="Registry" name="5">
                 <div>
-                    Decision making: giving advices about operations is acceptable, but do
-                    not make decisions for the users;
-                </div>
-                <div>
-                    Controlled consequences: users should be granted the freedom to
-                    operate, including canceling, aborting or terminating current
-                    operation.
+                    <CheckBoxGroup :elements="registries" />
                 </div>
             </el-collapse-item>
-            <el-collapse-item title="Price" name="4">
-                <div>
-                    Decision making: giving advices about operations is acceptable, but do
-                    not make decisions for the users;
-                </div>
-                <div>
-                    Controlled consequences: users should be granted the freedom to
-                    operate, including canceling, aborting or terminating current
-                    operation.
+            <el-collapse-item title="Price" name="6">
+                <div class="vintage-select">
+                    <div>
+                        <span>From</span>
+                        <el-input v-model="form.from" type="number" placeholder="$0.00" />
+                    </div>
+                    <div>
+                        <span>To</span>
+                        <el-input v-model="form.to" type="number" placeholder="$0.00" />
+                    </div>
                 </div>
             </el-collapse-item>
         </el-collapse>
@@ -77,6 +57,7 @@
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
+import CheckBoxGroup from './CheckBoxGroup.vue';
 const form = reactive({
     offer: '',
     credits: '',
@@ -95,14 +76,44 @@ const activeNames = ref(['1'])
 const handleChange = (val: string[]) => {
     console.log(val)
 }
+
+const cities = ref([
+    'Energy industry (renewable/non-renewable sources)',
+    'Energy distribution',
+    'Energy demand',
+    'Manufacturing industries',
+    'Chemical industries',
+    'Construction',
+    'Transport',
+    'Mining/mineral production',
+    'Metal production',
+    'Fugitive emissions from fuels (solid, oil and gas)',
+    'Fugitive emissions from production and consumption of halocarbons and sulphur hexafluoride',
+    'Solvent use',
+    'Waste handling and disposal',
+    'Agriculture, forestry, and other land use',
+]);
+
+const mechanisms = ref(['Avoidance', 'Removal'])
+const countries = ref(['Phippines', 'Malaysia', 'Indonesia'])
+const registries = ref(['Gold Standard', 'Puro Earth', 'Verra'])
 </script>
 
 <style scoped lang="scss">
 .vintage-select {
     display: flex;
 
+    div {
+        line-height: 30px;
+        color: #A19F9F;
+    }
+
+    .el-input__inner::placeholder {
+        font-size: 10px;
+    }
+
     el-select {
-        margin: 0 10px 0 10px;
+        margin: 0;
     }
 
     span {

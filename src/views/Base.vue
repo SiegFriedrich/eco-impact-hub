@@ -2,13 +2,14 @@
     <el-header class="header common-margin">
         <EcoLogo @click="backToHome()" class="pointer" />
         <div class="header-navi">
-            <div class="title">Projects</div>
-            <div class="title">About Us</div>
+            <div class="title" @click="open3">Projects</div>
+            <div v-show="isMyHub" class="title" @click="gotoMyhub">My Hub</div>
+            <div class="title" @click="open3">About Us</div>
             <div class="icon-group">
-                <div>
+                <div @click="open3">
                     <img src="../assets/shoppingcart.png" width="33" alt="shopping cart" />
                 </div>
-                <div>
+                <div @click="open3">
                     <img src="../assets/profile.png" width="36" alt="profile" />
                 </div>
             </div>
@@ -22,12 +23,32 @@
   
 
 <script setup lang="ts">
-import EcoLogo from '../elements/EcoLogo.vue'
 import { useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
+import { ElNotification } from 'element-plus';
+import EcoLogo from '../elements/EcoLogo.vue'
+import { computed } from 'vue';
+
 const router = useRouter();
+const route = useRoute();
+const isMyHub = computed(() => {
+    return !route.path.includes('myhub');
+})
 const backToHome = () => {
     router.push('/');
 }
+const open3 = () => {
+    ElNotification({
+        title: 'Info',
+        message: 'This function has not been implemented',
+        type: 'info',
+    })
+}
+
+const gotoMyhub = () => {
+    router.push('/myhub')
+}
+
 
 </script>
 
@@ -69,6 +90,7 @@ const backToHome = () => {
             justify-content: space-between;
             align-items: center;
             margin-left: 50px;
+            cursor: pointer;
         }
     }
 
