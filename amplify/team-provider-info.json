@@ -14,6 +14,15 @@
     "categories": {
       "auth": {
         "ecoimpacthub": {}
+      },
+      "function": {
+        "S3Triggeraa2f9b2b": {
+          "deploymentBucketName": "amplify-amplifya813048971fb4-staging-115735-deployment",
+          "s3Key": "amplify-builds/S3Triggeraa2f9b2b-31642b464c755a363176-build.zip"
+        }
+      },
+      "storage": {
+        "hubMetaStorage": {}
       }
     }
   }
