@@ -22,7 +22,7 @@ const routes: Array<RouteRecordRaw> = [
             ]
         },
         {
-          path: "/projects/detail/:id",
+          path: "projects/detail/:id",
           name: "detail",
           meta: {
             isShow: true,
@@ -32,7 +32,7 @@ const routes: Array<RouteRecordRaw> = [
             import(/* webpackChunkName: "about" */ "../views/Detail.vue"),
         },
         {
-          path: "/myhub",
+          path: "myhub",
           name: "myhub",
           meta: {
             isShow: true,
@@ -40,6 +40,58 @@ const routes: Array<RouteRecordRaw> = [
           },
           component: () =>
             import(/* webpackChunkName: "about" */ "../views/MyHub.vue"),
+            children:[
+              {
+                path: "transactions",
+                name: "transactions",
+                meta: {
+                  isShow: true,
+                  title: "index",
+                },
+                component: () =>
+                  import(/* webpackChunkName: "about" */ "../hubpages/Transactions.vue"),
+              },
+              {
+                path: "messages",
+                name: "messages",
+                meta: {
+                  isShow: true,
+                  title: "index",
+                },
+                component: () =>
+                  import(/* webpackChunkName: "about" */ "../hubpages/Messages.vue"),
+              },
+              {
+                path: "bids_and_offers",
+                name: "bids_and_offers",
+                meta: {
+                  isShow: true,
+                  title: "index",
+                },
+                component: () =>
+                  import(/* webpackChunkName: "about" */ "../hubpages/BidsOffers.vue"),
+              },
+              {
+                path: "paymentdetails",
+                name: "PaymentDetails",
+                meta: {
+                  isShow: true,
+                  title: "index",
+                },
+                component: () =>
+                  import(/* webpackChunkName: "about" */ "../hubpages/PaymentDetails.vue"),
+              },
+              {
+                path: "settings",
+                name: "settings",
+                meta: {
+                  isShow: true,
+                  title: "index",
+                },
+                component: () =>
+                  import(/* webpackChunkName: "about" */ "../hubpages/Settings.vue"),
+              },
+            ]
         },
     ]
   },

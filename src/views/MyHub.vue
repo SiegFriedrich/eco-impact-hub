@@ -1,25 +1,27 @@
 <template>
     <el-container class="common-margin">
         <el-header class="seconde-header">
-            <div><el-text style="font-size: 40px;">My Hub</el-text></div>
+            <div><el-text class="page-title">My Hub</el-text></div>
             <div>
                 <ClearableInput :placeholderMessage="placeholderMsg" />
             </div>
             <div>
-                <el-button @click="open3" color="#004D84" round>+ Request for proposal</el-button>
+                <el-button @click="open3" color="#004D84" round>+ New Order</el-button>
             </div>
         </el-header>
 
         <el-container>
             <el-aside class="side" width="200px">
-                <div class="reset-section">
-                    <el-button class="reset-button" type="info" round>Reset filters</el-button>
-                </div>
-                <SideMenu />
+                <ul>
+                    <li class="menu-item" v-for="item in mainMenu" :class="{ active: route.path.includes(item.path) }"
+                        :key="item.name" @click="changePage(item.path)"> {{
+                            item.name }} </li>
+                </ul>
+
             </el-aside>
 
             <el-main>
-                <h1>My Hub To be continued!</h1>
+                <router-view />
             </el-main>
 
         </el-container>
@@ -27,13 +29,13 @@
 </template>
 
 <script setup lang="ts">
-// import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import ClearableInput from '../components/ClearableInput.vue'
-import SideMenu from '../components/SideMenu.vue';
 import { ElNotification } from 'element-plus';
 import { ref } from 'vue';
 const placeholderMsg = ref('Search message here')
-// const router = useRouter();
+const router = useRouter();
+const route = useRoute();
 /**
  * How to deal with dynamic path import in vite vue3
  * https://juejin.cn/post/7030698018609315871
@@ -50,6 +52,42 @@ const open3 = () => {
     })
 }
 
+const mainMenu = [
+    // {
+    //     name: 'Dashboard',
+    //     path: 'dashboard'
+    // },
+    {
+        name: 'Transactions',
+        path: 'transactions'
+    },
+    {
+        name: 'Messages',
+        path: 'messages'
+    },
+    {
+        name: 'Bids & Offers',
+        path: 'bids_and_offers'
+    },
+    {
+        name: 'Payment Details',
+        path: 'paymentdetails'
+    },
+    {
+        name: 'Settings',
+        path: 'settings'
+    },
+]
+
+const changePage = (path: string) => {
+    // if path contains the path i want to push, the function will not be called
+    if (!route.path.includes(path)) router.push(`/myhub/${path}`);
+}
+
+// const active = ref({
+//     fontWeight: '700',
+//     color: '#004D84',
+// })
 
 </script>
 
@@ -130,6 +168,11 @@ const open3 = () => {
     margin-bottom: 60px;
     display: flex;
     justify-content: space-between;
+
+    .page-title {
+        font-size: 40px;
+        color: #000000;
+    }
 }
 
 .side {
@@ -155,14 +198,21 @@ const open3 = () => {
 
     .menu-item {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: center;
         line-height: 51px;
         font-size: 15px;
         color: #A19F9F;
         height: 51px;
-        border-bottom: 1px solid #A19F9F;
         cursor: pointer;
+    }
+
+    .menu-item::before {
+        content: '';
+        width: 21px;
+        height: 14px;
+        background-color: #D9D9D9;
+        margin-right: 10px;
     }
 
 
@@ -177,5 +227,10 @@ const open3 = () => {
 
 .footer {
     background-color: darkgoldenrod;
+}
+
+.active {
+    font-weight: 700;
+    color: #004D84 !important;
 }
 </style>

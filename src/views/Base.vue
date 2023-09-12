@@ -2,7 +2,7 @@
     <el-header class="header common-margin">
         <EcoLogo @click="backToHome()" class="pointer" />
         <div class="header-navi">
-            <div class="title" @click="open3">Projects</div>
+            <div class="title" @click="backToHome()">Projects</div>
             <div class="title" @click="gotoMyhub">My Hub</div>
             <div class="title" @click="open3">About Us</div>
             <div class="icon-group">
@@ -46,7 +46,7 @@ const open3 = () => {
 }
 
 const gotoMyhub = () => {
-    router.push('/myhub')
+    router.push('/myhub/transactions')
 }
 
 

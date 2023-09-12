@@ -1,7 +1,7 @@
 <template>
     <el-container class="common-margin">
         <el-header class="seconde-header">
-            <div><el-text style="font-size: 40px;">Projects</el-text></div>
+            <div><el-text class="page-title">Projects</el-text></div>
             <div>
                 <ClearableInput :placeholderMessage="placeholderMsg" />
             </div>
@@ -149,6 +149,11 @@ const gotoDatailPage = (detailNo: string) => {
     margin-bottom: 60px;
     display: flex;
     justify-content: space-between;
+
+    .page-title {
+        font-size: 40px;
+        color: #000000;
+    }
 }
 
 .side {
