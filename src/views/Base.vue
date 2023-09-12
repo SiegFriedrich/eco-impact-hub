@@ -3,7 +3,7 @@
         <EcoLogo @click="backToHome()" class="pointer" />
         <div class="header-navi">
             <div class="title" @click="open3">Projects</div>
-            <div v-show="isMyHub" class="title" @click="gotoMyhub">My Hub</div>
+            <div class="title" @click="gotoMyhub">My Hub</div>
             <div class="title" @click="open3">About Us</div>
             <div class="icon-group">
                 <div @click="open3">
@@ -24,16 +24,16 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import { useRoute } from 'vue-router';
+// import { useRoute } from 'vue-router';
 import { ElNotification } from 'element-plus';
 import EcoLogo from '../elements/EcoLogo.vue'
-import { computed } from 'vue';
+// import { computed } from 'vue';
 
 const router = useRouter();
-const route = useRoute();
-const isMyHub = computed(() => {
-    return !route.path.includes('myhub');
-})
+// const route = useRoute();
+// const isMyHub = computed(() => {
+//     return !route.path.includes('myhub');
+// })
 const backToHome = () => {
     router.push('/');
 }

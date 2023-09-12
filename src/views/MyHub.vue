@@ -19,7 +19,7 @@
             </el-aside>
 
             <el-main>
-                myhub
+                <h1>My Hub To be continued!</h1>
             </el-main>
 
         </el-container>

@@ -168,10 +168,12 @@
             </template>
         </el-dialog>
 
-        <el-dialog v-model="centerBidVisible" width="30%" center>
+        <el-dialog class="msg-box" v-model="centerBidVisible" width="30%" center>
             <div class="center-dialog">
                 <img src="../assets/bid.png" />
-                <span> Bid created </span>
+            </div>
+            <div class="center-dialog">
+                <span class="msg-box-info"> Bid created </span>
             </div>
             <template #footer>
                 <span class="dialog-footer">
@@ -180,10 +182,12 @@
             </template>
         </el-dialog>
 
-        <el-dialog v-model="centerOfftakeVisible" width="30%" center>
+        <el-dialog class="msg-box" v-model="centerOfftakeVisible" width="30%" center>
             <div class="center-dialog">
                 <img src="../assets/offtake.png" />
-                <span> Offtake proposal created </span>
+            </div>
+            <div class="center-dialog">
+                <div class="msg-box-offtake"> Offtake proposal created </div>
             </div>
             <template #footer>
                 <span class="dialog-footer">
@@ -407,11 +411,15 @@ const options = [
 }
 
 .center-dialog {
-    img {
-        max-width: 200px;
-    }
 
     display: flex;
-    flex-direction:column-reverse;
+    justify-content: center;
+
+    img {
+        /* max-width: 200px; */
+        margin-left: 50%;
+    }
+
+
 }
 </style>

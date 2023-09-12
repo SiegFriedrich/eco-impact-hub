@@ -14,6 +14,7 @@
 
 .el-dialog {
     max-width: 650px;
+    min-width: 450px;
     border-radius: 15px;
 }
 
@@ -122,6 +123,33 @@
     .el-dialog__header {
         margin: 16px;
         border-bottom: 1px solid #004D84
+    }
+}
+
+.msg-box {
+    .msg-box-info{
+        font-size: 30px;
+        font-weight: 700;
+        color: #004D84;
+        line-height: 37px;
+    }
+    .msg-box-offtake{
+        font-size: 30px;
+        font-weight: 700;
+        color: #1D91A2;
+        line-height: 37px;
+    }
+    .dialog-footer {
+        font-size: 14px;
+        font-weight: 400;
+        color: #525252;
+       
+    }
+    .el-dialog__body{
+        padding-bottom: 10px;
+    }
+    .el-dialog__footer{
+        padding-bottom: 40px;
     }
 }
 
